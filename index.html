@@ -120,6 +120,28 @@
         </ul>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBPEKyuJssXCMQLHU5QLGvtNM5bfpIrXcY",
+            authDomain: "auth-apps-68439.firebaseapp.com",
+            projectId: "auth-apps-68439",
+            storageBucket: "auth-apps-68439.appspot.com",
+            messagingSenderId: "152199433849",
+            appId: "1:152199433849:web:e5001c15e09758807acea8"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // Make auth and firestores references
+        const auth= firebase.auth();
+        const db= firebase.firestore();
+
+        //Update firestore settings
+        db.settings({timestampsInSnapshots: true});
+    </script>
 
     <!-- Compiled and Minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
