@@ -1,15 +1,13 @@
-//get data
-db.collection('guides').get().then((snapshot)=> {
-    setupGuides(snapshot.docs);
-});
-
 // Listen for auth staus changes
 auth.onAuthStateChanged((user)=> {
     if(user){
-        console.log("User logged in: ", user);
+        //get data
+        db.collection('guides').get().then((snapshot)=> {
+            setupGuides(snapshot.docs);
+        });
     }
     else{
-        console.log("User logged out");
+        setupGuides([]);
     }
 });
 
@@ -59,7 +57,7 @@ loginForm.addEventListener('submit', (e)=> {
         console.log(cred.user);
 
         //close the login modal and reset the form
-        const modal= document.querySelector('#modal-signin');
+        const modal= document.querySelector('#modal-login');
         M.Modal.getInstance(modal).close();
         loginForm.reset();
     });
