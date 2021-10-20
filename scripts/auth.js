@@ -5,6 +5,8 @@ auth.onAuthStateChanged((user)=> {
         db.collection('guides').onSnapshot((snapshot)=> {
             setupGuides(snapshot.docs);
             setupUI(user);
+        }).catch((erro)=> {
+            console.log(erro.message);
         });
     }
     else{
