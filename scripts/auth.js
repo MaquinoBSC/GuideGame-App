@@ -1,3 +1,13 @@
+// Listen for auth staus changes
+auth.onAuthStateChanged((user)=> {
+    if(user){
+        console.log("User logged in: ", user);
+    }
+    else{
+        console.log("User logged out");
+    }
+});
+
 //signup
 const signupForm= document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (e)=> {
