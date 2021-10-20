@@ -1,3 +1,21 @@
+const guideList= document.querySelector('.guides');
+
+//setup guides
+const setupGuides= (data)=> {
+    let html= '';
+    data.forEach((doc)=> {
+        const guide= doc.data();
+        const li= `
+                <li>
+                    <div class="collapsible-header grey lighten-4">${guide.title}</div>
+                    <div class="collapsible-body white">${guide.content}</div>
+                </li>
+            `;
+        html+= li;
+    });
+    guideList.innerHTML= html;
+}
+
 //Configurar componentes de materialize
 document.addEventListener('DOMContentLoaded', function(){
     //DOMCOntentLoaded es un evento que se ejecuta cuando una vez que el contenido se renderiza en la pagina
