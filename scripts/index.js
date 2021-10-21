@@ -7,10 +7,13 @@ const accountDetails= document.querySelector('.account-details');
 const setupUI= (user)=> {
     if(user){
         //user info
-        const html= `
-            <div>Logged in as: ${user.email}</div>
-        `;
-        accountDetails.innerHTML= html;
+        db.collection('users').doc(user.uid).get().then((doc)=> {
+            const html= `
+                <div>Logged in as: ${user.email}</div>
+                <p>${doc.data().bio}</p>
+            `;
+            accountDetails.innerHTML= html;
+        });
 
         //toggle ui elements
         loggedInLink.forEach((item)=> item.style.display= 'block');
@@ -19,7 +22,7 @@ const setupUI= (user)=> {
     else{
         //hide user info
         accountDetails.innerHTML= '';
-        
+
         //tooggle ui elements
         loggedInLink.forEach((item)=> item.style.display= 'none');
         loggedOutLinks.forEach((item)=> item.style.display= 'block');

@@ -5,7 +5,7 @@ auth.onAuthStateChanged((user)=> {
         db.collection('guides').onSnapshot((snapshot)=> {
             setupGuides(snapshot.docs);
             setupUI(user);
-        }).catch((erro)=> {
+        }, erro=> {
             console.log(erro.message);
         });
     }
@@ -45,7 +45,10 @@ signupForm.addEventListener('submit', (e)=> {
    //Sign up the user
     auth.createUserWithEmailAndPassword(email, password)
         .then((cred)=> {
-            console.log(cred.user);
+            return db.collection('users').doc(cred.user.uid).set({
+                bio: signupForm['signup-bio'].value,
+            });
+        }).then(()=> {
             //hacemos referencia al modal y lo cerramos usando materialize
             const modal= document.querySelector('#modal-signup');
             M.Modal.getInstance(modal).close();
